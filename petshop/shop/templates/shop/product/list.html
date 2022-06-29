@@ -5,14 +5,31 @@
 {% endblock %}
 
 {% block content %}
+<!-- Image header -->
+  <div class="w3-display-container w3-container">
+    <img src="https://cdn.shopify.com/s/files/1/0344/6469/files/Screen_Shot_2017-03-02_at_3.19.41_PM_grande.png?v=1488486032" alt="Лапки" style="width:100%">
+    <div class="w3-display-topleft w3-text-black" style="padding:24px 48px">
+        <h1 class="w3-jumbo w3-hide-small" style="background-color:#d7d8d8; "><b>ПРЕМИАЛЬНЫЕ КОРМА</b></h1>
+
+        <h1 class="w3-hide-small"><b>Новое поступление</b></h1>
+        <p><a href="#jeans" class="w3-button w3-black w3-padding-large w3-large">КУПИТЬ</a></p>
+    </div>
+  </div>
 
   <!-- Product grid -->
   <div class="w3-row">
+  <h1>{% if category %}{{category.name}}{% else %}Товары{% endif %}</h1>
   {% for product in products %}
     <div class="w3-col l3 s6">
       <div class="w3-container">
-        <img src="{% if product.image %}{{product.image.url}}{% else %}{% static 'img/no_image.png' %}{% endif %}" style="width:100%">
-        <p><a href="{{ product.get_absolute_url }}">{{ product.name|truncatechars:60}}</a><br><b>{{ product.price }} Руб</b></p>
+          <a href="{{ product.get_absolute_url }}">
+            <img src="{% if product.image %}{{product.image.url}}{% else %}{% static 'img/no_image.png' %}{% endif %}" style="width:100%">
+          </a>
+          <p>
+          <a href="{{ product.get_absolute_url }}">{{ product.name|truncatechars:60}}</a>
+          <br>
+              <b>{{ product.price }} Руб</b>
+          </p>
       </div>
     </div>
   {% endfor %}
